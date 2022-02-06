@@ -1,65 +1,89 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PosterTest {
+class PosterTest {
+
+    PosterManager manager = new PosterManager();
+
+    private Poster first = new Poster(1, "First", "1");
+    private Poster second = new Poster(2, "Second", "2");
+    private Poster third = new Poster(3, "Third", "3");
+    private Poster fourth = new Poster(4, "Fourth", "4");
+    private Poster fifth = new Poster(5, "Fifth", "5");
+    private Poster sixth = new Poster(6, "Sixth", "6");
+    private Poster seventh = new Poster(7, "Seventh", "7");
+    private Poster eighth = new Poster(8, "Eighth", "8");
+    private Poster ninth = new Poster(9, "Ninth", "9");
+    private Poster tenth = new Poster(10, "Tenth", "10");
+
+    Poster[] expected = {tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+
 
     @Test
-    public void setPoster() {
-        Poster first = new Poster(1, "Имя1", "Жанр1");
-        Poster second = new Poster(2, "Имя2", "Жанр2");
-        Poster third = new Poster(3, "Имя3", "Жанр3");
-        Poster fourth = new Poster(4, "Имя4", "Жанр4");
-        Poster fifth = new Poster(5, "Имя5", "Жанр5");
-        Poster sixth = new Poster(6, "Имя6", "Жанр6");
-        Poster seventh = new Poster(7, "Имя7", "Жанр7");
-        Poster eighth = new Poster(8, "Имя8", "Жанр8");
-        Poster ninth = new Poster(9, "Имя9", "Жанр9");
-        Poster tenth = new Poster(10, "Имя10", "Жанр10");
-
-        PosterRepository repo = new PosterRepository();
-        repo.add(first);
-        repo.add(second);
-        repo.add(third);
-        repo.add(fourth);
-        repo.add(fifth);
-        repo.add(sixth);
-        repo.add(seventh);
-        repo.add(eighth);
-        repo.add(ninth);
-        repo.add(tenth);
-
-        Poster[] actual = repo.getAll();
-        Poster[] expected = new Poster[]{tenth,ninth,eighth,seventh,sixth,fifth,fourth,third,second,first};
-        assertArrayEquals(expected,actual);
+    void PosterTest1() {
+        PosterManager manager = new PosterManager(10);
+        manager.addPoster(first);
+        manager.addPoster(second);
+        manager.addPoster(third);
+        manager.addPoster(fourth);
+        manager.addPoster(fifth);
+        manager.addPoster(sixth);
+        manager.addPoster(seventh);
+        manager.addPoster(eighth);
+        manager.addPoster(ninth);
+        manager.addPoster(tenth);
+        Poster[] actual = manager.getLastPoster();
+        assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void setPoster2() {
-        Poster first = new Poster(1, "Имя1", "Жанр1");
-        Poster second = new Poster(2, "Имя2", "Жанр2");
-        Poster third = new Poster(3, "Имя3", "Жанр3");
-        Poster fourth = new Poster(4, "Имя4", "Жанр4");
-        Poster fifth = new Poster(5, "Имя5", "Жанр5");
-        Poster sixth = new Poster(6, "Имя6", "Жанр6");
-        Poster seventh = new Poster(7, "Имя7", "Жанр7");
-        Poster eighth = new Poster(8, "Имя8", "Жанр8");
-        Poster ninth = new Poster(9, "Имя9", "Жанр9");
-        Poster tenth = new Poster(10, "Имя10", "Жанр10");
-
-        PosterRepository repo = new PosterRepository();
-        repo.add(first);
-        repo.add(second);
-        repo.add(third);
-        repo.add(fourth);
-        repo.add(fifth);
-        repo.add(sixth);
-        repo.add(seventh);
-        repo.add(eighth);
-        repo.add(ninth);
-        repo.add(tenth);
-
-        Poster[] actual = repo.getAll2(4);
-        Poster[] expected = new Poster[]{tenth,ninth,eighth,seventh};
-        assertArrayEquals(expected,actual);
+    void PosterTest2() {
+        PosterManager manager = new PosterManager(0);
+        Poster[] actual = manager.getLastPoster();
+        Poster [] expected = new Poster[0];
+        assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void PosterTest3() {
+        PosterManager manager = new PosterManager(5);
+        manager.addPoster(first);
+        manager.addPoster(second);
+        manager.addPoster(third);
+        manager.addPoster(fourth);
+        manager.addPoster(fifth);
+        manager.addPoster(sixth);
+        manager.addPoster(seventh);
+        manager.addPoster(eighth);
+        manager.addPoster(ninth);
+        manager.addPoster(tenth);
+        Poster movieToAdd = new Poster(11, "NumberFive", "horrors");
+        manager.addPoster(movieToAdd);
+        Poster[] actual = manager.getLastPoster();
+        Poster[] expected = {new Poster(11, "NumberFive", "horrors"), tenth, ninth, eighth, seventh};
+        assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    void PosterTest4() {
+        PosterManager manager = new PosterManager(11);
+        manager.addPoster(first);
+        manager.addPoster(second);
+        manager.addPoster(third);
+        manager.addPoster(fourth);
+        manager.addPoster(fifth);
+        manager.addPoster(sixth);
+        manager.addPoster(seventh);
+        manager.addPoster(eighth);
+        manager.addPoster(ninth);
+        manager.addPoster(tenth);
+        Poster[] actual = manager.getLastPoster();
+        assertArrayEquals(expected, actual);
+
+    }
+
+
 }
