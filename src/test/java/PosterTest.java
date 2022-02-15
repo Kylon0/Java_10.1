@@ -59,12 +59,11 @@ class PosterTest {
         manager.addPoster(eighth);
         manager.addPoster(ninth);
         manager.addPoster(tenth);
-        Poster movieToAdd = new Poster(11, "NumberFive", "horrors");
+        Poster movieToAdd = new Poster(11, "Eleventh", "11");
         manager.addPoster(movieToAdd);
         Poster[] actual = manager.getLastPoster();
-        Poster[] expected = {new Poster(11, "NumberFive", "horrors"), tenth, ninth, eighth, seventh};
-        assertArrayEquals(expected, actual);
-
+        Poster[] expected = {movieToAdd, tenth, ninth, eighth, seventh};
+        assertArrayEquals(actual,expected);
     }
 
     @Test
