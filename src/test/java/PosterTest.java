@@ -18,8 +18,6 @@ class PosterTest {
     private Poster ninth = new Poster(9, "Ninth", "9");
     private Poster tenth = new Poster(10, "Tenth", "10");
 
-    Poster[] expected = {tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
-
 
     @Test
     void PosterTest1() {
@@ -35,6 +33,7 @@ class PosterTest {
         manager.addPoster(ninth);
         manager.addPoster(tenth);
         Poster[] actual = manager.getLastPoster();
+        Poster[] expected = {tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
     }
 
@@ -80,6 +79,7 @@ class PosterTest {
         manager.addPoster(ninth);
         manager.addPoster(tenth);
         Poster[] actual = manager.getLastPoster();
+        Poster[] expected = {tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
 
     }

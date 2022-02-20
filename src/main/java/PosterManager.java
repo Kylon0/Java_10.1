@@ -24,11 +24,12 @@ public class PosterManager {
     }
 
     public Poster[] getLastPoster() {
+        int defaultLength = defaultPosterLength;
         int moviesLength = posters.length;
         if (moviesLength < defaultPosterLength) {
-            defaultPosterLength = moviesLength;
+            defaultLength = moviesLength;
         }
-        Poster[] customFilm = new Poster[defaultPosterLength];
+        Poster[] customFilm = new Poster[defaultLength];
         for (int i = 0; i < customFilm.length; i++) {
             int result = moviesLength - i - 1;
             customFilm[i] = posters[result];
